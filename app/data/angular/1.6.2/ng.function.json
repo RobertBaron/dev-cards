@@ -1,0 +1,73 @@
+[{
+  "id": "angular.bind",
+  "title": "angular.bind",
+  "description": "Returns a function which calls function fn bound to self (self becomes the this for fn). You can supply optional args that are prebound to the function. This feature is also known as partial application, as distinguished from function currying.",
+  "framework": "angular",
+  "version": "1.6.1",
+  "language": "js",
+  "parent": {
+    "name": "function",
+    "id": "fn"
+  },
+  "definition": {
+    "params": [{
+      "name": "self",
+      "type": "object",
+      "details": "Context which fn should be evaluated in.",
+
+    }, {
+      "name": "fn",
+      "type": "function()",
+      "details": "Function to be bound."
+    }, {
+      "name": "args",
+      "type": "*",
+      "details": "Optional arguments to be prebound to the fn function call.",
+      "optional": true
+    }],
+    "returns": {
+      "type": "function()",
+      "details": "Function that wraps the fn with all the specified bindings."
+    },
+    "usage": "angular.bind(self, fn, args);"
+  },
+  "sample": "<ng-copy ng-copy=\"expression\">\n...\n</ng-copy>"
+},{
+  "key": "angular.bootstrap",
+  "title": "angular.bootstrap",
+  "description": "Use this function to manually start up AngularJS application.\nFor more information, see the Bootstrap guide.\nAngularJS will detect if it has been loaded into the browser more than once and only allow the first loaded script to be bootstrapped and will report a warning to the browser console for each of the subsequent scripts. This prevents strange results in applications, where otherwise multiple instances of AngularJS try to work on the DOM.",
+  "framework": "angular",
+  "version": "1.6.1",
+  "language": "js",
+  "parent": {
+    "name": "function",
+    "id": "fn"
+  },
+  "definition": {
+    "params": [
+      {
+        "name": "element",
+        "type": "DOMElement",
+        "details": "DOM element which is the root of AngularJS application."
+      },
+      {
+        "name": "modules",
+        "type": "Array<String|Function|Array>=()",
+        "details": "an array of modules to load into the application. Each item in the array should be the name of a predefined module or a (DI annotated) function that will be invoked by the injector as a config block. See: modules",
+        "optional": true
+      },
+      {
+        "name": "config",
+        "type": "object",
+        "details": "an object for defining configuration options for the application. The following keys are supported:\nstrictDi - disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code. Defaults to false.",
+        "optional": true
+      }
+    ],
+    "returns": {
+      "type": "auto.$injector",
+      "details": "Returns the newly created injector for this app."
+    },
+    "usage": "angular.bootstrap(element, [modules], [config]);"
+  },
+  "sample": "<!doctype html>\n<html>\n<body>\n<div ng-controller=\"WelcomeController\">\n  {{greeting}}\n</div>\n\n<script src=\"angular.js\"></script>\n<script>\n  var app = angular.module('demo', [])\n  .controller('WelcomeController', function($scope) {\n      $scope.greeting = 'Welcome!';\n  });\n  angular.bootstrap(document, ['demo']);\n</script>\n</body>\n</html>"
+}]
