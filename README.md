@@ -22,6 +22,7 @@ This is so we don't show the card anymore in a period of time (configurable?)
 has the option to export as json, any framework can be added ( some might not fit well with the structure, we can have that as a separate thing.)
 
 
+[INPUT FORM FOR DEV FLASHCARDS!](https://github.com/RobertBaron/dev-flashcards)
 ## Getting Started
 
 To get you started you can simply clone the [dev-cards][repo] repository and install the dependencies:
@@ -251,7 +252,7 @@ configure your server to serve the files under the `app/` directory.
 This really depends on how complex your app is and the overall infrastructure of your system, but
 the general rule is that all you need in production are the files under the `app/` directory.
 Everything else should be omitted.
-
+a
 Angular apps are really just a bunch of static HTML, CSS and JavaScript files that need to be hosted
 somewhere they can be accessed by browsers.
 

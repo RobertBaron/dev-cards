@@ -1,47 +1,106 @@
-<section flex layout="row" layout-wrap>
+<section>
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <h2 flex md-truncate>Flashcard input project</h2>
+        </div>
+    </md-toolbar>
 
-    <div flex="100" layout="column">
-        <md-card>
+    <section id="content" role="content" layout="column" layout-padding >
+        <md-content class="md-whiteframe-z2" >
+            <form name="userForm">
+                <md-subheader class="md-primary">Function header</md-subheader>
+                <md-input-container class="md-block">
+                    <label>Title</label>
+                    <input ng-model="card.title">
+                </md-input-container>
 
-            <md-card-header>
-                <md-card-header-text>
-                    <span class="md-title">{{card.title}}</span>
-                    <span class="md-subhead">{{card.framework}} | {{card.version}}</span>
-                </md-card-header-text>
-            </md-card-header>
+                <md-input-container class="md-block">
+                    <label>Description</label>
+                    <textarea ng-model="card.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                </md-input-container>
 
-            <md-card-content>
-                <p>{{card.description}}</p>
+                <md-subheader class="md-primary">Function definition</md-subheader>
 
-                <md-toolbar class="md-whiteframe-2dp" layout="row">
-                    <div class="md-toolbar-tools md-whiteframe-2dp">
-                        <span>Usage</span>
+                <md-slider-container>
+
+                    <md-input-container>
+                        <input flex type="number" min="0" ng-model="paramsSize" aria-label="red" aria-controls="red-slider">
+                    </md-input-container>
+                    <md-slider flex min="0" max="10" ng-model="paramsSize" aria-label="red" id="red-slider">
+                    </md-slider>
+
+                </md-slider-container>
+
+
+                <div ng-repeat="param in params track by $index" class="md-whiteframe-2dp" layout-padding>
+                    <div class="row" layout="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Param name</label>
+                            <input ng-model="param.name">
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Type</label>
+                            <md-select ng-model="param.type">
+                                <md-option ng-repeat="paramType in paramTypes" value="{{paramType.name}}">
+                                    {{paramType.name}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+
+
+                        <md-switch class="md-primary" name="special" ng-model="param.optional">
+                            Optional
+                        </md-switch>
+
+
                     </div>
-                </md-toolbar>
-
-                <md-list class="md-whiteframe-1dp" flex>
-                    <md-subheader class="md-no-sticky">{{card.definition.usage}}</md-subheader>
-
-                    <md-list-item class="md-2-line" ng-repeat="param in card.definition.params">
-
-                        <div class="md-list-item-text" layout="column">
-                            <h3><span class="type-hint type-hint-label" ng-class="getHintClass(param.type)">{{ param.type}}</span>{{ param.name }}</h3>
-
-                            <p>{{ param.details }}</p>
-                        </div>
-                    </md-list-item>
-
-                </md-list>
-                <h1>Sample</h1>
-                <div hljs hljs-source="card.sample"></div>
-            </md-card-content>
-
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button class="md-raised" ng-disabled="index === total -1" ng-click="next()">Next</md-button>
-                <md-button class="md-raised md-primary">Saved in mind!</md-button>
-            </md-card-actions>
-        </md-card>
-    </div>
 
 
+                    <md-input-container class="md-block">
+                        <label>Param details</label>
+                        <textarea ng-model="param.details" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                    </md-input-container>
+
+
+                </div>
+
+                <div class="row" layout="row">
+
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Return Type</label>
+                        <md-select ng-model="definition.returns.type">
+                            <md-option ng-repeat="paramType in paramTypes" value="{{paramType.name}}">
+                                {{paramType.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Return</label>
+                        <input ng-model="definition.returns.details">
+                    </md-input-container>
+                </div>
+
+                <md-subheader class="md-primary">Usage</md-subheader>
+                <md-input-container class="md-block">
+                    <label>Usage</label>
+                    <input ng-model="card.usage">
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Sample</label>
+                    <textarea ng-model="card.sample" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                </md-input-container>
+                <div class="row" layout="row" layout-align="end end">
+                    <md-button class="md-primary md-raised">Save</md-button>
+                </div>
+
+            </form>
+
+        </md-content>
+
+    </section>
 </section>

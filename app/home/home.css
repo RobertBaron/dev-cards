@@ -1,22 +1,4 @@
-.type-hint {
-  text-align: center;
-  min-width: 60px;
-  margin: 1px 5px;
-  display: inline-block;
-  background: gray; }
-  .type-hint.type-hint-function {
-    background: green; }
-  .type-hint.type-hint-label {
-    display: inline;
-    padding: 1px 7px;
-    font-size: 72%;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .25em;
-    margin-left: 0px; }
+#content {
+  padding: 36px; }
 
 /*# sourceMappingURL=home.css.map */

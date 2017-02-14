@@ -15,25 +15,46 @@ angular.module('myApp.home', ['ui.router'])
 
   .controller('HomeCtrl', ['$rootScope', '$scope', 'flashcardService', function($rootScope, $scope, flashcardService) {
 
-    $scope.flipped = false;
-
-    $scope.index = 0;
-    $scope.card = {};
-
-    var cards = [];
-    $rootScope.$on('cards_loaded', function(){
-      cards = flashcardService.getList();
-      $scope.card = cards[$scope.index];
-      $scope.total = cards.length;
+    $scope.params = [];
+    $scope.paramsSize = 0;
+    $scope.paramTypes = ['object', 'function', 'string', 'number'].map(function(param) {
+      return {name: param};
     });
 
-    $scope.next = function(){
-      $scope.index++;
-      $scope.card = cards[$scope.index];
-    };
+    $scope.$watch('paramsSize', function(){
+      $scope.params = [];
+      for(var i = 0; i < $scope.paramsSize; i++) {
+        $scope.params.push({
+          "name": "",
+          "type": "",
+          "details": "",
+          "optional": false
+        });
+      }
+    });
 
-    $scope.getHintClass = function(type) {
-      return 'type-hint-' + type.replace(/[^a-z]/g,'');
+    $scope.card = {
+      "framework": "angular",
+      "version": "1.6.1",
+      "language": "js",
+      "parent": {
+        "name": "function",
+        "id": "fn"
+      },
+
+
+      "key": "",
+      "title": "",
+      "description": "",
+      "definition": {
+        "params": [],
+        "returns": {
+          "type": null,
+          "details": null
+        },
+        "usage": ""
+      },
+      "sample": ""
     };
 
   }]);
