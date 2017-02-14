@@ -11,4 +11,8 @@ angular.module('myApp', [
 ]).
 config(['$urlRouterProvider', function($urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
+}])
+.config(['$compileProvider',
+function ($compileProvider) {
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):/);
 }]);

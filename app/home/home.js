@@ -21,19 +21,7 @@ angular.module('myApp.home', ['ui.router'])
       return {name: param};
     });
 
-    $scope.$watch('paramsSize', function(){
-      $scope.params = [];
-      for(var i = 0; i < $scope.paramsSize; i++) {
-        $scope.params.push({
-          "name": "",
-          "type": "",
-          "details": "",
-          "optional": false
-        });
-      }
-    });
-
-    $scope.card = {
+    var defaultCard = {
       "framework": "angular",
       "version": "1.6.1",
       "language": "js",
@@ -41,8 +29,6 @@ angular.module('myApp.home', ['ui.router'])
         "name": "function",
         "id": "fn"
       },
-
-
       "key": "",
       "title": "",
       "description": "",
@@ -56,5 +42,40 @@ angular.module('myApp.home', ['ui.router'])
       },
       "sample": ""
     };
+
+    $scope.$watch('paramsSize', function(){
+      $scope.params = [];
+      for(var i = 0; i < $scope.paramsSize; i++) {
+        $scope.card.definition.params.push({
+          "name": "",
+          "type": "",
+          "details": "",
+          "optional": false
+        });
+      }
+    });
+
+    function format() {
+      $scope.card.key = $scope.card.title.replace(' ', '.')
+    }
+
+    $scope.reset = function() {
+      $scope.card = angular.copy(defaultCard);
+    };
+
+    $scope.save = function() {
+      format();
+
+      $scope.toJSON = angular.toJson($scope.card);
+      var blob = new Blob([$scope.toJSON], { type:"application/json;charset=utf-8;" });
+      var downloadLink = angular.element('<a></a>');
+      downloadLink.attr('href',window.URL.createObjectURL(blob));
+      downloadLink.attr('download', $scope.card.title + '.json');
+      downloadLink[0].click();
+
+      $scope.reset();
+    };
+
+    $scope.reset();
 
   }]);
